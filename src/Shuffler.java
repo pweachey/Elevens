@@ -8,6 +8,7 @@ public class Shuffler {
 	 * to each sorting procedure.
 	 */
 	private static final int SHUFFLE_COUNT = 1;
+	private static final int VALUE_COUNT = 0;
 
 
 	/**
@@ -50,8 +51,24 @@ public class Shuffler {
 	 * @param values is an array of integers simulating cards to be shuffled.
 	 */
 	public static void perfectShuffle(int[] values) {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 3 *** */
-	}
+		/* *** ACTIVITY 3 *** */
+		
+		int[] half1 = new int[ VALUE_COUNT / 2 ];
+        int[] half2 = new int[ VALUE_COUNT - VALUE_COUNT / 2 ];
+
+        for( int i = 0; i < VALUE_COUNT / 2; i++ ) {
+            half1[i] = values[i];
+        }
+        
+        for( int i = 0; i < VALUE_COUNT - VALUE_COUNT / 2; i++ ) {
+            half2[i] = values[ i + VALUE_COUNT / 2 ];
+        }
+
+        for( int i = 0; i < VALUE_COUNT / 2; i++ ) {
+            values[ 2 * i ] = half2[i];
+            values[ 2 * i + 1 ] = half1[i];
+        }
+    }
 
 	/**
 	 * Apply an "efficient selection shuffle" to the argument.
@@ -65,6 +82,13 @@ public class Shuffler {
 	 * @param values is an array of integers simulating cards to be shuffled.
 	 */
 	public static void selectionShuffle(int[] values) {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 3 *** */
-	}
+		/* *** ACTIVITY 3 *** */
+		
+		for( int k = VALUE_COUNT - 1; k >= 0; k-- ) {
+            int r = (int)(Math.random() * k);
+            int tmp = values[r];
+            values[r] = values[k];
+            values[k] = tmp;
+        }
+    }
 }
